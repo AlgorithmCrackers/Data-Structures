@@ -1,5 +1,5 @@
-# Set the default behavior, in case people don't have core.autocrlf set.
-* text=auto
+# Set to LF (unix) line endings by default
+* text eol=lf
 
 # Explicitly declare text files you want to always be normalized and converted
 # to native line endings on checkout.
