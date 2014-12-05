@@ -5,10 +5,11 @@ http://cslibrary.stanford.edu/110/BinaryTrees.html
 */
 
 int main( void ) {
-    FILE *fp;   
+    FILE *fp;
     fp = fopen("./tree.dot", "w+");
-    bst_print_dot(build123(), fp);
+    struct node* tree = build123();
+    bst_print_dot(tree, fp);
     printf("%s\n", "run: dot -Tpng tree.dot -o tree.png");
     fclose(fp);
+    deleteTree(&tree);
 }
-
