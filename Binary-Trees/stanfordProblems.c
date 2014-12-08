@@ -5,7 +5,7 @@ struct node* build123(){
     root = insert(root, 2);
     root = insert(root, 1);
     root = insert(root, 3);
-    return(root); 
+    return(root);
 }
 
 struct node* buildN(int n){
@@ -13,13 +13,13 @@ struct node* buildN(int n){
     for (int i=1; i<=n ; i++ ) {
         insert(root, i);
     }
-    return(root); 
+    return(root);
 }
 
 /*
  Compute the number of nodes in a tree.
 */
-int size(struct node* node) { 
+int size(struct node* node) {
     if( node == NULL ) {
         return 0;
     }
@@ -46,13 +46,13 @@ int maxDepth(struct node* node) {
  return the minimum data value found in that tree.
  Note that the entire tree does not need to be searched.
 */
-int minValue(struct node* node) { 
+int minValue(struct node* node) {
     struct node* current = node;
     // loop down to find the leftmost leaf
     while (current->left != NULL) {
         current = current->left;
     }
-    return(current->data); 
+    return(current->data);
 }
 
 /*
@@ -60,64 +60,63 @@ int minValue(struct node* node) {
  return the maximum data value found in that tree.
  Note that the entire tree does not need to be searched.
 */
-int maxValue(struct node* node) { 
+int maxValue(struct node* node) {
     struct node* current = node;
     // loop down to find the leftmost leaf
     while (current->right != NULL) {
         current = current->right;
     }
-    return(current->data); 
+    return(current->data);
 }
 
 /*
  Given a binary search tree, print out
  its data elements in increasing
  sorted order.
- This is known as an "inorder" traversal of the tree. 
+ This is known as an "inorder" traversal of the tree.
 */
-void printTree(struct node* node) { 
+void printTree(struct node* node) {
     if (node == NULL) return;
     printTree(node->left);
     printf("%d ", node->data);
-    printTree(node->right); 
+    printTree(node->right);
 }
 
 /*
- Given a binary tree, print its nodes according to the "bottom-up" postorder 
+ Given a binary tree, print its nodes according to the "bottom-up" postorder
  traversal.
--- both subtrees of a node are printed out completely before the node itself 
- is printed, and each left subtree is printed before the right subtree. 
+-- both subtrees of a node are printed out completely before the node itself
+ is printed, and each left subtree is printed before the right subtree.
 */
-void printPostorder(struct node* node) { 
+void printPostorder(struct node* node) {
     if (node == NULL) return;
     printPostorder(node->left);
     printPostorder(node->right);
     printf("%d ", node->data);
 }
 
-/* 
- Given a binary tree and a sum, return true if the tree has a root-to-leaf 
- path such that adding up all the values along the path equals the given sum. 
+/*
+ Given a binary tree and a sum, return true if the tree has a root-to-leaf
+ path such that adding up all the values along the path equals the given sum.
  Return false if no such path can be found.
 
  Strategy: subtract the node value from the sum when recurring down,
- and check to see if the sum is 0 when you run out of tree. 
+ and check to see if the sum is 0 when you run out of tree.
 */
 int hasPathSum(struct node* node, int sum) {
     if (node == NULL) return sum == 0;
     else {
-        return hasPathSum(node->left, sum - node->data) 
-               || hasPathSum(node->right, sum - node->data)
+        return hasPathSum(node->left, sum - node->data)
+               || hasPathSum(node->right, sum - node->data);
     }
 }
 
-/*
- Given a binary tree, print out all of its root-to-leaf
- paths, one per line. Uses a recursive helper to do the work.
-*/
-void printPaths(struct node* node) {
-    int path[1000]; 
-    printPathsRecur(node, path, 0);
+// Utility that prints out an array on a line.
+void printArray(int ints[], int len) {
+  int i;
+  for (i=0; i<len; i++)
+    printf("%d ", ints[i]);
+    printf("\n");
 }
 
 /*
@@ -140,18 +139,20 @@ void printPathsRecur(struct node* node, int path[], int pathLen) {
         printPathsRecur(node->right, path, pathLen);
     }
 }
-
-// Utility that prints out an array on a line.
-void printArray(int ints[], int len) {
-  int i;
-  for (i=0; i<len; i++)
-      printf("%d ", ints[i]);
-  printf("\n");
+/*
+Given a binary tree, print out all of its root-to-leaf
+paths, one per line. Uses a recursive helper to do the work.
+*/
+void printPaths(struct node* node) {
+  int path[1000];
+  printPathsRecur(node, path, 0);
 }
 
+
+
 /*
-Change a tree so that the roles of the left and right pointers are swapped 
-at every node. 
+Change a tree so that the roles of the left and right pointers are swapped
+at every node.
 */
 void mirror(struct node* node) {
     if (node==NULL) return;
@@ -164,12 +165,12 @@ void mirror(struct node* node) {
     struct node* prevRight = node->right;
     node->right = node->left;
     node->left = prevRight;
-    
+
 }
 
 /*
-For each node in a binary search tree, create a new duplicate node, 
-and insert the duplicate as the left child of the original node. 
+For each node in a binary search tree, create a new duplicate node,
+and insert the duplicate as the left child of the original node.
 */
 void doubleTree(struct node* node) {
     if (node==NULL) return;
@@ -184,16 +185,16 @@ void doubleTree(struct node* node) {
     node->left->left = prevLeft;
 }
 
-/* 
+/*
 Given two binary trees, return true if they are structurally
-identical -- they are made of nodes with the same values 
-arranged in the same way. 
+identical -- they are made of nodes with the same values
+arranged in the same way.
  */
 int sameTree(struct node* a, struct node* b) {
     if( a == NULL && b == NULL) // both empty
-        return true; 
+        return true;
     else if( a != NULL && b != NULL ) // both non-empty, so compare
-        return( (a->data == b->data) && 
+        return( (a->data == b->data) &&
                 sameTree(a->left, b->left) &&
                 sameTree(a->right, b->right) );
     else
@@ -230,7 +231,7 @@ int countTrees(int numKeys) {
 
     return(sum);
   }
-} 
+}
 
 int isBST(struct node* node) {
   if (node==NULL) return(true);
@@ -240,7 +241,7 @@ int isBST(struct node* node) {
   // (bug -- an earlier version had min/max backwards here)
   if (node->left!=NULL && maxValue(node->left) > node->data)
     return(false);
- 
+
   // false if the min of the right is <= than us
   if (node->right!=NULL && minValue(node->right) <= node->data)
     return(false);
@@ -254,18 +255,10 @@ int isBST(struct node* node) {
 }
 
 /*
- Returns true if the given tree is a binary search tree
- (efficient version).
-*/
-int isBST2(struct node* node) {
-  return(isBSTRecur(node, INT_MIN, INT_MAX));
-}
-
-/*
  Returns true if the given tree is a BST and its
  values are >= min and <= max.
 */
-int isBSTRecur(struct node* node, int min, int max) { 
+int isBSTRecur(struct node* node, int min, int max) {
     if (node==NULL) return(true);
     if (min > node->data)
         return(false);
@@ -276,4 +269,11 @@ int isBSTRecur(struct node* node, int min, int max) {
   // false if, recursively, the left or right is not a BST
     return (isBSTRecur(node->left, min, node->data) &&
         isBSTRecur(node->right, node->data+1, max)); // note the +1
+}
+/*
+Returns true if the given tree is a binary search tree
+(efficient version).
+*/
+int isBST2(struct node* node) {
+  return(isBSTRecur(node, INT_MIN, INT_MAX));
 }

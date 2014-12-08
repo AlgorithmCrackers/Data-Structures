@@ -29,7 +29,7 @@ int lookup(struct node* node, int target) {
 int lookup_nonRecursive(struct node* node, int target) {
 	struct node* it = node;
 	while (it != NULL) {
-		if (it->data == data) return(true);
+		if (it->data == target) return(true);
 		else {
 			if (target < node->data) it = it->left;
 			else it = it->right;
@@ -37,7 +37,6 @@ int lookup_nonRecursive(struct node* node, int target) {
 	}
 	return(false);
 }
-
 /*
  Helper function that allocates a new node
  with the given data and NULL left and right
@@ -50,8 +49,6 @@ struct node* NewNode(int data) {
 	node->right = NULL;
 	return(node);
 }
-
-
 /*
  Give a binary search tree and a number, inserts a new node
  with the given number in the correct place in the tree.
@@ -83,16 +80,14 @@ struct node* insert(struct node* node, int data) {
 */
 struct node* insert_nonRecursive(struct node* node, int data) {
 	// 1. If the tree is empty, return a new, single node
-	if (node == NULL) {
-		return(NewNode(data));
-	}
+	if (node == NULL) return(NewNode(data));
 	else {
 		// 2. Otherwise, recur down the tree
 		struct node* it = node;
 		int dir;
 		for ( ; ; ) {
-    	if ( it->data == data ) return (node); // duplicate case
 			dir = it->data < data;
+    	if ( it->data == data ) return (node); // duplicate case
 			else if ( dir ) {
 				if (it->left == NULL) break;
 				else it = it->left;
@@ -120,8 +115,6 @@ struct node * minValueNode(struct node* node)
 
 	return current;
 }
-
-
 /*
 	http://geeksquiz.com/binary-search-tree-set-2-delete/
 	Delete a node in a BST.
@@ -130,8 +123,7 @@ struct node * minValueNode(struct node* node)
 		* The node has one child <== easy
 		* The node has two children <== tricky
 */
-struct node* deleteNode(struct node* node, int key)
-{
+struct node* deleteNode(struct node* node, int key) {
 	// base case (also for cant find the key!)
 	if (node == NULL) return(node);
 
@@ -139,7 +131,7 @@ struct node* deleteNode(struct node* node, int key)
 	if (key < node->data)
 		node->left = deleteNode(node->left, key);
 	// right subtree
-	else if (key > node->key)
+	else if (key > node->data)
 		node->right = deleteNode(node->right, key);
 	//found the node to be deleted
 	else {
@@ -176,7 +168,6 @@ struct node* deleteNode(struct node* node, int key)
 	}
 	return node;
 }
-
 /*  This function traverses tree in post order to
 to delete each and every node of the tree */
 void _deleteTree(struct node* node)
@@ -191,19 +182,16 @@ void _deleteTree(struct node* node)
 	printf("\n Deleting node: %d", node->data);
 	free(node);
 }
-
 /* Deletes a tree and sets the root as NULL */
 void deleteTree(struct node** node_ref)
 {
 	_deleteTree(*node_ref);
 	*node_ref = NULL;
 }
-
 /*
 we delete a node when there's no left link and do a right rotation
 when there is, we can be sure that we'll see and delete every node in the tree.
-
-**** see http://imgur.com/a/U2sA4 ***
+see http://imgur.com/a/U2sA4
 */
 void deleteTree_nonRecursive ( struct node* tree ) {
 	struct node* it = tree;
