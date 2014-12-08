@@ -89,7 +89,6 @@ struct node* insert_nonRecursive(struct node* node, int data) {
 	else {
 		// 2. Otherwise, recur down the tree
 		struct node* it = node;
-		struct jsw_node *it = tree->root;
 		int dir;
 		for ( ; ; ) {
     	if ( it->data == data ) return (node); // duplicate case
@@ -198,4 +197,28 @@ void deleteTree(struct node** node_ref)
 {
 	_deleteTree(*node_ref);
 	*node_ref = NULL;
+}
+
+/*
+we delete a node when there's no left link and do a right rotation
+when there is, we can be sure that we'll see and delete every node in the tree.
+
+**** see http://imgur.com/a/U2sA4 ***
+*/
+void deleteTree_nonRecursive ( struct node* tree ) {
+	struct node* it = tree;
+	struct node* save;
+	while ( it != NULL ) {
+		if ( it->left != NULL ) {
+	   	/* Right rotation */
+	   	save = it->left;
+	    it->left = save->right;
+	    save->right = it;
+	  }
+	  	else {
+       save = it->right;
+       free ( it );
+     }
+     it = save;
+   }
 }
