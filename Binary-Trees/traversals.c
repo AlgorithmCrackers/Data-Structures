@@ -73,6 +73,7 @@ void preorder_nonrecursive ( struct node *tree ) {
   }
 }
 // move left, visit, move right
+// see http://imgur.com/9RxHnr8
 void inorder_nonrecursive ( struct node* tree ) {
   /*
   Inorder traversal is harder. We need to walk to the left without losing any
