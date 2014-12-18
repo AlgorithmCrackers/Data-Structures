@@ -6,17 +6,10 @@ class Node {
 	int data;
 	Node next;
 	Node prev;
-
-	public Node() {
-
-		next = null;
-		prev = null;
-	}
-
 }
 class LinkedList {
-	Node head = new Node();
-	Node tail = new Node();
+	Node head;
+	Node tail;
 
 	boolean insertFront(int newData) {
 		Node newNode = new Node();
