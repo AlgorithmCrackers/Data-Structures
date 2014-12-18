@@ -1,5 +1,6 @@
 /*
-Linked List Implementation
+Linked List Node Implementation
+from CtCI 
 @author: prakash.natarajan@outlook.com
 */
 
@@ -9,7 +10,6 @@ class LinkedListNode {
 	LinkedListNode prev;
 
 	public LinkedListNode() {
-
 	}
 
 	public LinkedListNode(int d, LinkedListNode n, LinkedListNode p) {
@@ -17,16 +17,17 @@ class LinkedListNode {
 		this.setNext(n);
 		this.setPrev(p);
 	}
-
+	//sets the next node
 	public void setNext(LinkedListNode n) {
 		next = n;
-		if(n != null && n.prev != this) {
+		if(n != null && n.prev != this) {	//n.prev is checked in order stop adding the node recursively
 			n.setPrev(this);			
 		}
 	}
+	//sets the prev node
 	public void setPrev(LinkedListNode p) {
 		prev = p;
-		if(p != null && p.next != this) {
+		if(p != null && p.next != this) { 	//p.next is to imply termination
 			this.setNext(p);
 		}
 	}
