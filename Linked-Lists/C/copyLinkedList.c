@@ -75,7 +75,7 @@ struct node* CopyListWithDummy(struct node* head) {
     }
     return(dummy.next);
 }
-/* 
+/*
 The final, and most unusual version uses the "local references" strategy instead of a tail
 pointer. The strategy is to keep a lastPtr that points to the last pointer in the list. All
 node additions are done at the lastPtr, and it always points to the last pointer in the
@@ -98,7 +98,7 @@ struct node* CopyListWithLocalRef(struct node* head) {
     }
     return(newList);
 }
-/* 
+/*
 Here is the recursive version of CopyList(). It has the pleasing
 shortness that recursive code often has. However, it is probably not good for production
 code since it uses stack space proportional to the length of its list.

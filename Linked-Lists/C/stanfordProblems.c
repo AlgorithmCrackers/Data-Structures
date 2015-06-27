@@ -8,10 +8,10 @@ http://cslibrary.stanford.edu/105/
 Given a list and an int, return the number of times that int occurs
 in the list.
 */
-int Count(struct node* head, int searchFor) { 
+int Count(struct node* head, int searchFor) {
     struct node* current;
     int count = 0;
-    for (current = head; current != NULL; current = current->next) { 
+    for (current = head; current != NULL; current = current->next) {
         if( current->data == searchFor) {
             count++;
         }
@@ -26,7 +26,7 @@ int GetNth(struct node* head, int index) {
     assert( ( index >= 0 ) && ( index < Length(head) ) );
     struct node* current;
     int currentIndex = 0;
-    for (current = head; current != NULL; current = current->next) { 
+    for (current = head; current != NULL; current = current->next) {
         if ( currentIndex == index ) {
             return current->data;
         }
@@ -34,8 +34,10 @@ int GetNth(struct node* head, int index) {
     }
     return -1;
 }
-// function DeleteList() that takes a list, deallocates all of its memory and sets its head pointer to NULL (the empty list)
-//Essentially DeleteList() just needs to call free() once for each node and set the head pointer to NULL
+// function DeleteList() that takes a list, deallocates all of its memory
+// and sets its head pointer to NULL (the empty list)
+// Essentially DeleteList() just needs to call free() once for each node 
+// and set the head pointer to NULL
 void DeleteList(struct node** headRef) {
     struct node* current = *headRef;
     // deref headRef to get the real head
@@ -88,7 +90,7 @@ void InsertNth(struct node** headRef, int index, int data) {
     }
     // insert the newNode on the current position
     newNode->next = current->next;
-    current->next = newNode; 
+    current->next = newNode;
 }
 
 void InsertNth_StanfordSolution(struct node** headRef, int index, int data) {
@@ -146,7 +148,7 @@ void InsertSort(struct node** headRef) {
 }
 
 // Append 'b' onto the end of 'a', and then set 'b' to NULL.
-void Append(struct node** aRef, struct node** bRef) { 
+void Append(struct node** aRef, struct node** bRef) {
     // using dummy takes care of the special case when a is NULL
     struct node dummy;
     // Dummy node is temporarily the first node
@@ -159,7 +161,7 @@ void Append(struct node** aRef, struct node** bRef) {
     }
     // now tail->next == NULL
     tail->next = *bRef;
-    *aRef = dummy.next;    
+    *aRef = dummy.next;
     *bRef = NULL;
 }
 
@@ -188,7 +190,7 @@ Split the nodes of the given list into front and back halves,
 and return the two lists using the reference parameters.
 If the length is odd, the extra node should go in the front list.
 */
-void FrontBackSplit(struct node* source, struct node** frontRef, struct node** backRef) { 
+void FrontBackSplit(struct node* source, struct node** frontRef, struct node** backRef) {
     int len = Length(source);
     if ( len <  2) {
         *frontRef = source;
@@ -200,7 +202,7 @@ void FrontBackSplit(struct node* source, struct node** frontRef, struct node** b
         struct node* current = source;
         *frontRef = current; // front = [1,....]
         for ( int i = 1; i < mid; i++) { // for ex: 3 elements on front,  1->2, 2->3
-            current = current->next; // [2, 3]           
+            current = current->next; // [2, 3]
         }
         struct node* next = current->next;
         *backRef = next;
@@ -257,9 +259,9 @@ void RemoveDuplicates(struct node* head) {
         }
         else {
             prev = current;
-            current = prev->next;    
-        }  
-    } 
+            current = prev->next;
+        }
+    }
 }
 
 // Remove duplicates from a sorted list
@@ -285,7 +287,7 @@ void RemoveDuplicates_StanfordSoln(struct node* head) {
 Take the node from the front of the source, and move it to
 the front of the dest. It is an error to call this with the source list empty.
 */
-void MoveNode(struct node** destRef, struct node** sourceRef) { 
+void MoveNode(struct node** destRef, struct node** sourceRef) {
     struct node* sourceFront = *sourceRef;
     assert ( sourceFront != NULL ); // source list should not be empty
     *sourceRef = sourceFront->next; // Advance the source pointer
@@ -371,7 +373,7 @@ struct node* SortedMerge(struct node* a, struct node* b) {
         else {
             newList->next = b;
             newList = newList->next; // advance newList
-            b = b->next;  
+            b = b->next;
         }
     }
 
@@ -386,7 +388,7 @@ struct node* SortedMerge(struct node* a, struct node* b) {
 }
 
 void MergeSort(struct node** headRef) {
-    // Base case 
+    // Base case
     if ( (*headRef == NULL) || ( (*headRef)->next == NULL ) ) {
         return;
     }
@@ -402,7 +404,7 @@ void MergeSort(struct node** headRef) {
 Given two lists sorted in increasing order, create and return a new list representing the
 intersection of the two lists. The new list should be made with its own memory — the
 original lists should not be changed. In other words, this should be Push() list building,
-not MoveNode(). Ideally, each list should only be traversed once. 
+not MoveNode(). Ideally, each list should only be traversed once.
 
 Compute a new sorted list that represents the intersection
 of the two given sorted lists.
@@ -414,7 +416,7 @@ struct node* SortedIntersect(struct node* a, struct node* b) {
     while ( a != NULL && b != NULL ) {
         if ( a->data == b->data ) { // add to list only if it is equal
             Push( &(newList->next) , a->data );
-            newList = newList->next; // if we skip this line we get a descending ordered list :P 
+            newList = newList->next; // if we skip this line we get a descending ordered list :P
             a = a->next;
             b = b->next;
         }
@@ -422,7 +424,7 @@ struct node* SortedIntersect(struct node* a, struct node* b) {
             a = a->next;
         }
         else { // b < a
-            b = b->next;  
+            b = b->next;
         }
     }
     return (dummy.next);
@@ -463,10 +465,10 @@ void RecursiveReverse(struct node** headRef) {
     RecursiveReverse(&rest); // Recursively reverse the smaller {2, 3, 4} case
                              // after: rest = {4, 3, 2}
 
-    first->next->next = first; 
+    first->next->next = first;
     // put the first elem on the end of the list { first -> next = ( 2 ) now (2) -> next = 1 }
     // see http://www.geeksforgeeks.org/write-a-function-to-reverse-the-nodes-of-a-linked-lists/
     first->next = NULL; // (tricky step -- make a drawing)
-    
+
     *headRef = rest; // fix the head pointer
 }

@@ -1,5 +1,5 @@
 #include "linkedList.h"
-/* 
+/*
 Consider a AppendNode() function which is like Push(), except it adds the new node at
 the tail end of the list instead of the head. If the list is empty, it uses the reference pointer
 to change the head pointer. Otherwise it uses a loop to locate the last node in the list. This
@@ -29,7 +29,7 @@ void AppendNodeWithPush(struct node** headRef, int num) {
     // special case for the empty list
     if (current == NULL) {
         Push(headRef, num);
-    } 
+    }
     else {
         // Locate the last node
         while (current->next != NULL) {

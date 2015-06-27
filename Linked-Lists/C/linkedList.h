@@ -47,4 +47,25 @@ struct node* SortedIntersect(struct node* a, struct node* b);
 void Reverse(struct node** headRef);
 void RecursiveReverse(struct node** headRef);
 
+/* Tests */
+void PushTest();
+void CountTest();
+void GetNthTest();
+void DeleteListTest();
+void PopTest();
+void InsertNthTest();
+void SortedInsertTest();
+void InsertSortTest();
+void AppendTest();
+void FrontBackSplitTest();
+void RemoveDuplicatesTest();
+void MoveNodeTest();
+void AlternatingSplitTest();
+void ShuffleMergeTest();
+void SortedMergeTest();
+void MergeSortTest();
+void SortedIntersectTest();
+void ReverseTest();
+void RecursiveReverseTest();
+
 #endif

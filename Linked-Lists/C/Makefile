@@ -27,7 +27,7 @@ LFLAGS =
 LIBS =
 
 # define the C source files
-SRCS = main.c helperFuncs.c stanfordProblems.c appendNode.c copyLinkedList.c buildAtTail.c
+SRCS = main.c helperFuncs.c stanfordProblems.c appendNode.c copyLinkedList.c buildAtTail.c test.c
 
 # define the C object files
 #
