@@ -54,7 +54,7 @@ public class Graph {
 		return s.toString();
 	}
 	/**
-	 * returns the bfs graph given in <a href="http://courses.csail.mit.edu/6.006/fall11/lectures/lecture13.pdf">MIT BFS lecture</a>
+	 * returns <a href="http://courses.csail.mit.edu/6.006/fall11/lectures/lecture13.pdf">MIT BFS lecture</a> example graph
 	 */
 	public static Graph getBfsExampleGraph() {
 		Graph g = new Graph();
@@ -70,12 +70,29 @@ public class Graph {
 		g.add_UndirectedEdge("c", "v");
 		return g;
 	}
+	/**
+	 * returns <a href="http://courses.csail.mit.edu/6.006/fall11/lectures/lecture14.pdf">MIT DFS lecture</a> example graph
+	 */
+	public static Graph getDfsExampleGraph() {
+		Graph g = new Graph();
+		g.add_DirectedEdge("a", "b");
+		g.add_DirectedEdge("a", "d");
+		g.add_DirectedEdge("b", "e");
+		g.add_DirectedEdge("d", "b");
+		g.add_DirectedEdge("e", "d");
+		g.add_DirectedEdge("c", "e");
+		g.add_DirectedEdge("c", "f");
+		g.add_DirectedEdge("f", "f");
+		return g;
+	}
     /**
      * Unit tests the Graph data type.
      */
     public static void main(String[] args) {
         Graph G = Graph.getBfsExampleGraph();
         System.out.println(G);
+        Graph D = Graph.getDfsExampleGraph();
+        System.out.println(D);
     }
 
 }
