@@ -44,3 +44,11 @@ DFS_visit(v)
     
 order.reverse()
 ```
+### Result
+
+```
+Parent: {a=null, b=a, e=b, d=e, c=null, f=c}
+Order: [d, e, b, a, f, c]
+Edges: {(e, d)=tree, (c, e)=cross, (c, f)=tree, (a, d)=forward, (a, b)=tree, (b, e)=tree, (d, b)=back, (f, f)=back}
+
+```
