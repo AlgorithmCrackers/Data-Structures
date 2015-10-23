@@ -32,3 +32,15 @@ level: {s=0, a=1, x=1, z=2, c=2, d=2, f=3, v=3}
 - time in DFS_visit = `for s: Vertices { | Adj[v] | }`  = `O(E)`
 - DFS outer loop adds `O(V)`
 - `O(V + E)` time
+
+### Job scheduling
+- given directed acyclic graph(DAG), where vertices represent tasks, and edges represent dependencies, order task without violating dependencies.
+- **Topological Sort** : reverse of DFS finishing times (time at which DFS_visit(v) finishes)
+
+```
+DFS_visit(v)
+    ....
+    order.append(v)
+    
+order.reverse()
+```
