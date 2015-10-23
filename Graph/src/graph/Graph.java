@@ -22,17 +22,10 @@ public class Graph {
 		adj.get(u).add(v); E++;
 	}
 	public void add_UndirectedEdge(Object u, Object v){
-		if (!adj.containsKey(u)) {
-			adj.put(u, new HashSet<Object>());
-			V++;
-		}
-		if (!adj.containsKey(v)) {
-			adj.put(v, new HashSet<Object>());
-			V++;
-		}
-		adj.get(u).add(v);
-		adj.get(v).add(u);
-		E++;
+		// just add directed edges for both vertices, but add only 1 edge
+		add_DirectedEdge(u, v);
+		add_DirectedEdge(v, u);
+		E--;
 	}
 	public Iterable<Object> adj(Object v) {
         return adj.get(v);
