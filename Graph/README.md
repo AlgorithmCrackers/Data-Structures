@@ -22,6 +22,7 @@ level: {s=0, a=1, x=1, z=2, c=2, d=2, f=3, v=3}
 
 - Parent pointers form the **shortest path tree**.
   - To find the shortest path for `v`, `parent[v]`, `parent[ parent[v] ]`....till `s` (or null)
+
 ### Applications:
 
 * Connected Components
