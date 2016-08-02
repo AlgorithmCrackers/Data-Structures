@@ -22,6 +22,10 @@ level: {s=0, a=1, x=1, z=2, c=2, d=2, f=3, v=3}
 
 - Parent pointers form the **shortest path tree**.
   - To find the shortest path for `v`, `parent[v]`, `parent[ parent[v] ]`....till `s` (or null)
+### Applications:
+
+* Connected Components
+* vertex-coloring problem
 
 ## DFS
 
@@ -52,3 +56,9 @@ Order: [d, e, b, a, f, c]
 Edges: {(e, d)=tree, (c, e)=cross, (c, f)=tree, (a, d)=forward, (a, b)=tree, (b, e)=tree, (d, b)=back, (f, f)=back}
 
 ```
+
+#### Applications
+
+* Finding cycles
+* Topological sorting
+* Strongly Connected Components
