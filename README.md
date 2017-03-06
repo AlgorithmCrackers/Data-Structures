@@ -8,3 +8,4 @@ Data-Structures
 ## TO DO:
 * Tries
 * Red Black Trees
+* HashMaps
